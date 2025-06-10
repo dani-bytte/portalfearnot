@@ -19,8 +19,8 @@ app.register(helmet);
 app.register(dbPlugin);
 app.register(authPlugin);
 
-app.register(newsRoutes, { prefix: '/api/noticias' });
-app.register(guidesRoutes, { prefix: '/api/guias' });
+app.register(newsRoutes, { prefix: '/api/news' });
+app.register(guidesRoutes, { prefix: '/api/guides' });
 app.register(faqsRoutes, { prefix: '/api/faqs' });
 app.register(authRoutes, { prefix: '/api/admin/auth' });
 

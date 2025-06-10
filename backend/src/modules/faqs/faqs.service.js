@@ -1,6 +1,9 @@
 // FAQs service (business logic)
-const getAll = async (db) => {
-  const { rows } = await db.query('SELECT * FROM faqs ORDER BY "order" ASC NULLS LAST, id ASC');
+const getAll = async (db, { offset = 0, limit = 10 } = {}) => {
+  const { rows } = await db.query(
+    'SELECT * FROM faqs ORDER BY "order" ASC NULLS LAST, id ASC OFFSET $1 LIMIT $2',
+    [offset, limit]
+  );
   return rows;
 };
 

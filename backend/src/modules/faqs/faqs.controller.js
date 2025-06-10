@@ -2,7 +2,11 @@
 import faqsService from './faqs.service.js';
 
 const listFaqs = async (request, reply) => {
-  const faqs = await faqsService.getAll(request.server.db);
+  const { offset = 0, limit = 10 } = request.query;
+  const faqs = await faqsService.getAll(request.server.db, {
+    offset: Number(offset),
+    limit: Number(limit),
+  });
   return reply.send(faqs);
 };
 

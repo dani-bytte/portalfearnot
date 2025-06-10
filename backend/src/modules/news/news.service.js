@@ -1,6 +1,9 @@
 // News service (business logic)
-const getAll = async (db) => {
-  const { rows } = await db.query('SELECT * FROM news ORDER BY publication_date DESC');
+const getAll = async (db, { offset = 0, limit = 10 } = {}) => {
+  const { rows } = await db.query(
+    'SELECT * FROM news ORDER BY publication_date DESC OFFSET $1 LIMIT $2',
+    [offset, limit]
+  );
   return rows;
 };
 

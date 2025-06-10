@@ -2,7 +2,11 @@
 import newsService from './news.service.js';
 
 const listNews = async (request, reply) => {
-  const news = await newsService.getAll(request.server.db);
+  const { offset = 0, limit = 10 } = request.query;
+  const news = await newsService.getAll(request.server.db, {
+    offset: Number(offset),
+    limit: Number(limit),
+  });
   return reply.send(news);
 };
 
